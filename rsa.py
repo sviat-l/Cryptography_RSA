@@ -16,7 +16,7 @@ def gcd(a, b):
 
 def modular_multiplicative_inverse(a, b):
     """
-    gcd of two numbers with modular multiplicative inverse of two number a, b
+    Find modular multiplicative inverse of two number a, b
     """
     if a == 0:
         return 0, 1
@@ -50,7 +50,7 @@ def decrypt(encrypted_text, private_key):
     decrypt message with private key
     """
     d, n = private_key
-    return  ''.join([ chr(((int(number)) ** d) % n) for number in encrypted_text.split()])
+    return  ''.join([ chr(pow(int(number), d, n)) for number in encrypted_text.split()])
 
 
 def encrypt(text, public_key):
@@ -58,14 +58,14 @@ def encrypt(text, public_key):
     encrypt message with public key
     """
     e, n = public_key
-    return ' '.join([str((ord(s) ** e) % n) for s in text])
-    # return ' '.join([str(pow(ord(s), e, n)) for s in text])
+    return ' '.join([str(pow(ord(s), e, n)) for s in text])
 
 
 def hash_check(message):
     """
-    compare initial and decrypted messages and its hash
+    compare initial and decrypted messages and their hash
     """
+
     public_key, private_key = create_keys()
     print(public_key, private_key)
     hash1 = sha256(message.encode("utf-8"))

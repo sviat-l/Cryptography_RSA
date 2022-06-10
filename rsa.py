@@ -50,11 +50,7 @@ def decrypt(encrypted_text, private_key):
     decrypt message with private key
     """
     d, n = private_key
-    ans = ''
-    for number in encrypted_text.split(' '):
-        ans += chr(((int(number)) ** d) % n)
-    return ans
-    # return  ''.join([ chr(pow(int(number), d, n)) for number in encrypted_text.split()])
+    return  ''.join([ chr(((int(number)) ** d) % n) for number in encrypted_text.split()])
 
 
 def encrypt(text, public_key):
